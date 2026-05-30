@@ -1,0 +1,16 @@
+{
+  "name": "trabalhoconclusaodisciplina",
+  "version": "1.0.0",
+  "description": "Gestão de Pagamentos",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "mocha": "^11.7.6"
+  }
+}

@@ -1,2 +1,20 @@
-# TrabalhoConclusaoDisciplina
-Gestão de Pagamentos - Trabalho de Conclusão de Disciplina
+# Gestão de Pagamentos
+
+Trabajo de Conclusão da Disciplina - Gestão de Pagamentos com Mocha e Node Assert.
+
+## Estrutura do Projeto
+
+- **src/gerenciarPagamento.js** - Classe com as funções de gestão de pagamentos
+- **test/gerenciarPagamento.test.js** - Testes automatizados com Mocha
+
+## Como rodar os testes
+
+```bash
+npm install
+npm test
+```
+
+## Funcionalidades
+
+- `realizarNovoPagamento(codigoBarras, empresa, valor)` - Registra um novo pagamento
+- `consultarUltimoPagamento()` - Retorna o último pagamento registrado
