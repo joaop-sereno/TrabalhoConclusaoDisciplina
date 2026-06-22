@@ -23,10 +23,6 @@ jobs:
         with:
           node-version: '24.x'
 
-      # Instalar as dependências do projeto
-      - name: Instalar dependências
-        run: npm ci
-
       - name: Instalar Mocha e Mochawesome
         run: npm install mocha@11.7.6 mochawesome@7.1.4
 
