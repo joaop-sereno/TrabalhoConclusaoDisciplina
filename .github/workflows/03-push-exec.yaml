@@ -1,0 +1,42 @@
+# 03 - Execução por Push
+
+# Nome da pipeline
+name: 'N3 - Execução por Push'
+
+# Executa sempre que houver um push na branch main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-gerenciarPagamento:
+    # Máquina onde o job será executado
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clonar o projeto
+      - name: Checkout do projeto
+        uses: actions/checkout@v5
+
+      # Configurar o Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24.x'
+
+      # Instalar as dependências necessárias
+      - name: Instalar Mocha e Mochawesome
+        run: npm install mocha@11.7.6 mochawesome@7.1.4
+
+      # Executar os testes e gerar o relatório
+      - name: Executar testes de gerenciarPagamento
+        run: npx mocha --reporter mochawesome
+
+      # Armazenar o relatório na execução
+      - name: Armazenar relatório
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: resultado-gerenciarPagamento-push
+          path: mochawesome-report/
