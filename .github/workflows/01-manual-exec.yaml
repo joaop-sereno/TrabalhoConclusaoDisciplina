@@ -27,6 +27,9 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Instalar Mocha e Mochawesome
+        run: npm install mocha@11.7.6 mochawesome@7.1.4
+
       # Executar os testes
       - name: Executar testes de gerenciarPagamento
         run: npx mocha --reporter mochawesome
