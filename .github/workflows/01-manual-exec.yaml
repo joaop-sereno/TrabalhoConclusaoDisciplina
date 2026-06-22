@@ -1,51 +1,40 @@
-# CI de Nível 01 - Disparo Manual através de clique
+# 01 - Disparo Manual
 
-# nome da pipeline
+# Nome da pipeline
 name: 'N1 - Execução Manual'
 
-# gatilhos / triggers - regras de disparo
-# gatilho manual = workflow_dispatch
-
+# Gatilho manual
 on:
   workflow_dispatch:
 
-#tarefas dentro da pipeline = jobs
-
 jobs:
-  #nome do job
-  e2e-tests:
-    # maquina onde o job vai rodar
+  test-gerenciarPagamento:
+    # Máquina onde o job será executado
     runs-on: ubuntu-latest
 
-    # passos do job
     steps:
-      # clone do projeto
-      - uses: actions/checkout@v4
+      # Clonar o projeto
+      - name: Checkout do projeto
+        uses: actions/checkout@v5
 
-      # instalção do node
-      - uses: actions/setup-node@v4
+      # Instalar o Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v5
         with:
-          node-version: 24.x
+          node-version: '24.x'
 
-      # # instalação do Yarn
-      # - name: Instalando Yarn
-      #   run: npm install -g yarn
+      # Instalar as dependências do projeto
+      - name: Instalar dependências
+        run: npm ci
 
-      # #   instalação das dependências
-      # - name: Instalando dependências
-      #   run: yarn
+      # Executar os testes
+      - name: Executar testes de gerenciarPagamento
+        run: npx mocha --reporter mochawesome
 
-      # # instalação dos Browsers do Playwright
-      # - name: Instalando Browsers do Playwright
-      #   run: yarn playwright install
-
-      # executar os testes e2e
-      - name: Executando gerenciarPagamento
-        run: npx mocha
-
-      # - name: Salvando relatórios de testes
-      #   uses: actions/upload-artifact@v4
-      #   if: ${{ always() }}
-      #   with:
-      #     path: ./playwright-report
-      #     name: Relatório de Testes E2E
+      # Gerar o relatorio do resultado
+      - name: Gerar relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultado-gerenciarPagamento
+          path: mochawesome-report/
