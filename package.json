@@ -1,10 +1,10 @@
 {
   "name": "trabalhoconclusaodisciplina",
   "version": "1.0.0",
-  "description": "Gestão de Pagamentos - Trabalho de Conclusão de Disciplina",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --reporter mochawesome"
   },
   "keywords": [],
   "author": "",
