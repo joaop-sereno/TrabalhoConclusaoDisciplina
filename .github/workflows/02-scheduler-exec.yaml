@@ -1,0 +1,49 @@
+# 01 - Disparo Manual
+
+# Nome da pipeline
+name: 'N1 - Execução Agendada'
+
+# Gatilho manual
+on:
+  workflow_dispatch:
+
+  schedule:
+    # cronograma de execução
+    # 1 - minuto, 2 - hora, 3 dia do mês, 4 - mês, 5 - dia da semana
+
+    #Roda a cada 30 minutos
+    - cron: '*/30 * * * *'
+
+    #Roda toda sexta-feira à meia noite
+    - cron: '0 0 * * 5'
+
+jobs:
+  test-gerenciarPagamento:
+    # Máquina onde o job será executado
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clonar o projeto
+      - name: Checkout do projeto
+        uses: actions/checkout@v5
+
+      # Instalar o Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24.x'
+
+      - name: Instalar Mocha e Mochawesome
+        run: npm install mocha@11.7.6 mochawesome@7.1.4
+
+      # Executar os testes
+      - name: Executar testes de gerenciarPagamento
+        run: npx mocha --reporter mochawesome
+
+      # Gerar o relatorio do resultado
+      - name: Gerar relatório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultado-gerenciarPagamento
+          path: mochawesome-report/
