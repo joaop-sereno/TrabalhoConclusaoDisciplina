@@ -1,7 +1,7 @@
 {
   "name": "trabalhoconclusaodisciplina",
   "version": "1.0.0",
-  "description": "Gestão de Pagamentos",
+  "description": "Gestão de Pagamentos - Trabalho de Conclusão de Disciplina",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -12,5 +12,8 @@
   "type": "module",
   "dependencies": {
     "mocha": "^11.7.6"
+  },
+  "devDependencies": {
+    "mochawesome": "^7.1.4"
   }
 }
